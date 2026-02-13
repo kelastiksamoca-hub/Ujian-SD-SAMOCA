@@ -526,6 +526,442 @@ table td, table th{
   border-bottom:1px solid #eee;
 }
 
+/* ===============================
+   GLOBAL SMOOTH TRANSITION
+   =============================== */
+
+*{
+  transition: all .25s ease;
+}
+
+body{
+  animation: fadeBody .6s ease;
+}
+
+@keyframes fadeBody{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* ===============================
+   LOGIN ANIMATION
+   =============================== */
+
+.login-card{
+  animation: slideUp .7s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(40px) scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* ===============================
+   CARD ANIMATION
+   =============================== */
+
+.card,
+.soal-card{
+  opacity:0;
+  transform:translateY(25px);
+  animation: cardFade .6s forwards;
+}
+
+@keyframes cardFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Stagger effect */
+.grid .soal-card:nth-child(1){animation-delay:.05s}
+.grid .soal-card:nth-child(2){animation-delay:.1s}
+.grid .soal-card:nth-child(3){animation-delay:.15s}
+.grid .soal-card:nth-child(4){animation-delay:.2s}
+.grid .soal-card:nth-child(5){animation-delay:.25s}
+
+/* ===============================
+   HOVER LIFT EFFECT
+   =============================== */
+
+.card:hover,
+.soal-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 45px rgba(0,0,0,.2);
+}
+
+/* ===============================
+   BUTTON RIPPLE EFFECT
+   =============================== */
+
+button{
+  position:relative;
+  overflow:hidden;
+}
+
+button::after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:rgba(255,255,255,.4);
+  border-radius:50%;
+  transform:scale(0);
+  opacity:0;
+  pointer-events:none;
+}
+
+button:active::after{
+  transform:scale(8);
+  opacity:1;
+  transition:transform .4s ease, opacity .6s ease;
+}
+
+/* ===============================
+   MODAL ANIMATION
+   =============================== */
+
+.modal{
+  animation: fadeModal .3s ease;
+}
+
+.modal-card{
+  animation: zoomModal .35s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes fadeModal{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes zoomModal{
+  from{
+    opacity:0;
+    transform:scale(.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* ===============================
+   TOPBAR SMOOTH
+   =============================== */
+
+.topbar{
+  animation: slideDown .5s ease;
+}
+
+@keyframes slideDown{
+  from{
+    transform:translateY(-40px);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+/* ===============================
+   TIMER WARNING EFFECT
+   =============================== */
+
+.timer-box.warning{
+  animation:pulseTimer 1s infinite;
+  background:#ff3b3b;
+  color:white;
+}
+
+@keyframes pulseTimer{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+/* =====================================================
+   🔥 SUPER PREMIUM UI – SD SANTA MARIA MONICA
+   ===================================================== */
+
+/* ===============================
+   GLOBAL SMOOTH
+   =============================== */
+
+*{
+  transition: all .25s ease;
+}
+
+body{
+  background:linear-gradient(-45deg,#6f7bd9,#9b6bd6,#4CAF50,#6f7bd9);
+  background-size:400% 400%;
+  animation:gradientMove 12s ease infinite, fadeBody .6s ease;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+@keyframes fadeBody{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* ===============================
+   GLASSMORPHISM
+   =============================== */
+
+.login-card,
+.card,
+.soal-card,
+.modal-card{
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,0.3);
+}
+
+/* ===============================
+   LOGIN ANIMATION
+   =============================== */
+
+.login-card{
+  animation:slideUp .7s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(40px) scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* ===============================
+   CARD APPEAR + FLOAT EFFECT
+   =============================== */
+
+.card,
+.soal-card{
+  opacity:0;
+  transform:translateY(25px);
+  animation:cardFade .6s forwards;
+  transform-style:preserve-3d;
+}
+
+@keyframes cardFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Stagger animation */
+.grid .soal-card:nth-child(1){animation-delay:.05s}
+.grid .soal-card:nth-child(2){animation-delay:.1s}
+.grid .soal-card:nth-child(3){animation-delay:.15s}
+.grid .soal-card:nth-child(4){animation-delay:.2s}
+.grid .soal-card:nth-child(5){animation-delay:.25s}
+
+/* Hover premium depth */
+.card:hover,
+.soal-card:hover{
+  transform:translateY(-10px) rotateX(3deg) rotateY(-3deg);
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+
+/* ===============================
+   BUTTON MICRO INTERACTION
+   =============================== */
+
+button{
+  position:relative;
+  overflow:hidden;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+/* Ripple effect */
+button::after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:rgba(255,255,255,.4);
+  border-radius:50%;
+  transform:scale(0);
+  opacity:0;
+  pointer-events:none;
+}
+
+button:active::after{
+  transform:scale(8);
+  opacity:1;
+  transition:transform .4s ease, opacity .6s ease;
+}
+
+/* ===============================
+   TOPBAR ANIMATION
+   =============================== */
+
+.topbar{
+  animation:slideDown .5s ease;
+}
+
+@keyframes slideDown{
+  from{
+    transform:translateY(-40px);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+/* ===============================
+   PAGE TRANSITION
+   =============================== */
+
+.fade-page{
+  animation:fadePage .5s ease;
+}
+
+@keyframes fadePage{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ===============================
+   MODAL PREMIUM
+   =============================== */
+
+.modal{
+  backdrop-filter:blur(6px);
+  animation:fadeModal .3s ease;
+}
+
+.modal-card{
+  animation:zoomModal .35s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes fadeModal{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes zoomModal{
+  from{
+    opacity:0;
+    transform:scale(.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* ===============================
+   TIMER WARNING + PROGRESS BAR
+   =============================== */
+
+.timer-box.warning{
+  animation:pulseTimer 1s infinite;
+  background:#ff3b3b;
+  color:white;
+}
+
+@keyframes pulseTimer{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+/* Progress bar */
+
+.progress-container{
+  width:100%;
+  height:8px;
+  background:#eee;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+#progressBar{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,#4CAF50,#ff3b3b);
+  transition:width 1s linear;
+}
+
+/* ===============================
+   SKELETON LOADING
+   =============================== */
+
+.skeleton{
+  height:120px;
+  border-radius:18px;
+  margin-bottom:15px;
+  background:linear-gradient(90deg,#eee,#ddd,#eee);
+  background-size:200% 100%;
+  animation:skeletonMove 1.2s infinite;
+}
+
+@keyframes skeletonMove{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+
+/* ===============================
+   TOAST NOTIFICATION
+   =============================== */
+
+.toast{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#333;
+  color:white;
+  padding:14px 22px;
+  border-radius:14px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:.4s;
+  z-index:9999;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
 </style>
 </head>
 
@@ -573,6 +1009,11 @@ table td, table th{
       >
       <span class="eye" onclick="togglePass()">👁️</span>
     </div>
+    <input 
+      id="namaSiswa"
+      placeholder="Nama Lengkap"
+      style="display:none"
+    >
    
     <input 
       id="tokenInput" 
@@ -690,7 +1131,34 @@ table td, table th{
   <tbody id="tableData"></tbody>
 </table>
 </div>
+<!-- 📡 MONITORING SISWA -->
+<div class="card">
+  <h3>📡 Monitoring Siswa</h3>
+  <div style="display:flex;gap:10px;margin-bottom:10px;">
+  <button onclick="loadMonitoring()" 
+          style="background:#4CAF50">
+    🔄 Refresh Monitoring
+  </button>
 
+  <button onclick="hapusSelesai()" 
+          style="background:#ff3b3b">
+    🗑 Hapus Siswa Selesai
+  </button>
+</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>No Ujian</th>
+        <th>Nama</th>
+        <th>Status</th>
+        <th>Last Active</th>
+      </tr>
+    </thead>
+    <tbody id="monitoringTable"></tbody>
+  </table>
+</div>
 </div>
 
 <!-- SISWA -->
@@ -769,6 +1237,7 @@ const pass = document.getElementById("pass");
 const tokenInput = document.getElementById("tokenInput");
 const noUjian = document.getElementById("noUjian");
 const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwLy012pR_g-zeC0lm-MhUgNu4jfALapToT1ANLwYRhGIbACK2AwEMJp_xrLfLpthT9rw/exec";
+const MONITOR_URL = "https://script.google.com/macros/s/AKfycby-DCwoMi2IIH3HAN-mq8i3_RZvCXExmmcPObNslPPe7Sz5XM5OyuOUPbsfYcUywKKO/exec";
 
 let selectedRole="admin";
 let cacheSoal=[], cacheToken=[];
@@ -871,12 +1340,16 @@ function setRole(role){
   btnSiswa.classList.remove("active");
 
   const passBox = document.querySelector(".input-box");
+  const namaInput = document.getElementById("namaSiswa");
 
   if(role === "admin"){
     btnAdmin.classList.add("active");
 
     passBox.style.display = "flex";
     pass.value = "";
+
+    namaInput.style.display = "none";
+    namaInput.value = "";
 
     tokenInput.style.display = "none";
     tokenInput.value = "";
@@ -891,14 +1364,13 @@ function setRole(role){
     passBox.style.display = "none";
     pass.value = "";
 
+    namaInput.style.display = "block";
     tokenInput.style.display = "block";
     noUjian.style.display = "block";
 
     user.value = "Siswa";
   }
 }
-
-
 
 function togglePass(){
   pass.type=pass.type==="password"?"text":"password";
@@ -921,17 +1393,21 @@ async function login(){
 
  }else{
 
-  	const token = tokenInput.value.trim();
+  	const nama  = document.getElementById("namaSiswa").value.trim();
+    const token = tokenInput.value.trim();
+    const no    = noUjian.value.trim();
 
-  	if(!token){
-    alert("Masukkan token terlebih dahulu");
+  	if(!nama || !token || !no){
+    alert("Lengkapi Nama, Token, dan No Ujian");
     return;
-  	}
+    }
 
   	// 🔥 Simpan login
   	localStorage.setItem("login","true");
- 	localStorage.setItem("role","siswa");
-  	localStorage.setItem("token",token);
+    localStorage.setItem("role","siswa");
+    localStorage.setItem("token",token);
+    localStorage.setItem("namaSiswa",nama);
+    localStorage.setItem("noUjian",no);
 
   	// Bersihkan preview admin
   	localStorage.removeItem("preview");
@@ -947,6 +1423,12 @@ async function login(){
   	loginBox.style.display="none";
   	app.style.display="block";
   	siswaMode.style.display="block";
+   
+   cardData.innerHTML = `
+  	<div class="skeleton"></div>
+  	<div class="skeleton"></div>
+`	;
+
 
   	loadSiswa();          // tampilkan cache dulu
   	refreshSoalSiswa();   // ambil data terbaru di background
@@ -1145,7 +1627,12 @@ async function refreshSoalSiswa(){
 function loadSiswa(){
 
   cacheSoal = JSON.parse(localStorage.getItem("soal") || "[]");
-
+  const nama = localStorage.getItem("namaSiswa") || "";
+  const no   = localStorage.getItem("noUjian") || "";
+  namaTampil.innerHTML = `
+  👤 ${nama}<br>
+  📝 No Ujian: ${no}
+    `;
   const soalAktif = cacheSoal.filter(r => r && r[5] == 1);
 
   cardData.innerHTML = "";
@@ -1180,10 +1667,6 @@ function loadSiswa(){
   cardData.appendChild(frag);
 }
 
-
-
-
-  
 function mulaiUjian(mapel,durasi,link){
 
   if(localStorage.getItem("preview")==="admin"){
@@ -1203,10 +1686,27 @@ function mulaiUjian(mapel,durasi,link){
       String(sisaDetik%60).padStart(2,"0");
     if(sisaDetik<=0) keluarUjian();
   },1000);
+  updateMonitor("Mengerjakan");
+}
+function updateMonitor(status){
+
+  const nama = localStorage.getItem("namaSiswa");
+  const no   = localStorage.getItem("noUjian");
+
+  if(!nama || !no) return;
+
+  fetch(MONITOR_URL,{
+    method:"POST",
+    body: JSON.stringify({
+      nama:nama,
+      no:no,
+      status:status
+    })
+  });
 }
 
-
 function keluarUjian(){
+    updateMonitor("Keluar");
   clearInterval(timerInterval);
   frameSoal.src="";
   siswaUjian.style.display="none";
@@ -1257,8 +1757,126 @@ window.addEventListener("beforeunload", ()=>{
     localStorage.removeItem("login");
   }
 });
+window.addEventListener("load",()=>{
+   if(localStorage.getItem("login")==="true" &&
+      localStorage.getItem("role")==="siswa"){
 
-  
+        loginBox.style.display="none";
+        app.style.display="block";
+        siswaMode.style.display="block";
+        updateMonitor("Mengerjakan");
+        setInterval(()=>{
+            updateMonitor("Mengerjakan");
+        },5000);
+
+        loadSiswa();                   // tampil instan dari cache
+        setTimeout(refreshSoalSiswa,500); // update data 0.5 detik kemudian
+   }
+});
+window.addEventListener("load", ()=>{
+  if(sessionStorage.getItem("login")!=="true"){
+    loginBox.style.display="flex";   // ⬅ harus flex
+    app.style.display="none";
+    return;
+  }
+});
+
+document.addEventListener("visibilitychange", function(){
+  if(document.hidden){
+    sessionStorage.clear();
+  }
+});
+
+window.addEventListener("beforeunload", function(){
+  sessionStorage.clear();
+});
+
+async function loadMonitoring(){
+
+  try{
+
+    const res = await fetch(MONITOR_URL);
+    const data = await res.json();
+
+    const tbody = document.getElementById("monitoringTable");
+    tbody.innerHTML = "";
+
+    if(data.length === 0){
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5">Belum ada siswa aktif</td>
+        </tr>`;
+      return;
+    }
+
+    data.slice(1).forEach((row,index)=>{
+
+  const waktu = new Date(row[3]); // kolom lastActive
+  const jam = isNaN(waktu) ? "-" : waktu.toLocaleString("id-ID");
+
+  tbody.innerHTML += `
+    <tr>
+      <td>${index+1}</td>
+      <td>${row[0] || "-"}</td>
+      <td>${row[1] || "-"}</td>
+      <td>${row[2] || "-"}</td>
+      <td>${jam}</td>
+    </tr>
+  `;
+});
+
+  }catch(err){
+    console.log("Monitoring error:", err);
+  }
+}
+setInterval(()=>{
+  if(localStorage.getItem("role")==="admin"){
+    loadMonitoring();
+  }
+},5000);
+
+let intervalMonitoring = setInterval(()=>{
+
+  if(localStorage.getItem("role")==="siswa" && !sedangLogout){
+
+    const no = localStorage.getItem("noUjian");
+    const nama = localStorage.getItem("namaSiswa");
+
+    fetch(MONITOR_URL,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+        noUjian:no,
+        nama:nama,
+        status:"Mengerjakan"
+      })
+    });
+
+  }
+
+},5000);
+
+async function hapusSelesai(){
+
+  if(!confirm("Hapus SEMUA siswa yang sudah selesai ujian?")) return;
+
+  const formData = new FormData();
+  formData.append("action","DELETE_SELESAI");
+
+  const res = await fetch(MONITOR_URL,{
+    method:"POST",
+    body: formData
+  });
+
+  const text = await res.text();
+  console.log(text);
+
+  loadMonitoring();
+}
+
+
 
 </script>
 
