@@ -1837,22 +1837,20 @@ let intervalMonitoring = setInterval(()=>{
     const no = sessionStorage.getItem("noUjian");
     const nama = sessionStorage.getItem("namaSiswa");
 
+    const formData = new FormData();
+    formData.append("noUjian", no);
+    formData.append("nama", nama);
+    formData.append("status", "Mengerjakan");
+
     fetch(MONITOR_URL,{
       method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({
-        noUjian:no,
-        nama:nama,
-        status:"Mengerjakan"
-      })
+      body: formData
     });
 
   }
 
 },5000);
-
+	
 async function hapusSelesai(){
 
   if(!confirm("Hapus SEMUA siswa yang sudah selesai ujian?")) return;
