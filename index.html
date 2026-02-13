@@ -1441,24 +1441,39 @@ function logout(){
 }
 
 window.onload = ()=>{
-  if(localStorage.getItem("login")==="true"){
+
+  // RESET TAMPILAN DULU (PENTING)
+  loginBox.style.display="flex";
+  app.style.display="none";
+  adminMode.style.display="none";
+  siswaMode.style.display="none";
+  siswaUjian.style.display="none";
+
+  const login = localStorage.getItem("login");
+  const role  = localStorage.getItem("role");
+
+  if(login==="true" && role){
+
     loginBox.style.display="none";
     app.style.display="block";
 
-    if(localStorage.getItem("role")==="admin"){
+    if(role==="admin"){
       adminMode.style.display="block";
-      document.getElementById("btnModeSiswa").style.display = "inline-block";
+      document.getElementById("btnModeSiswa").style.display="inline-block";
       loadAdmin();
-    }else{
-      siswaMode.style.display="block";
-      document.getElementById("btnModeSiswa").style.display = "none";
-      loadSiswa();
     }
+
+    if(role==="siswa"){
+      siswaMode.style.display="block";
+      document.getElementById("btnModeSiswa").style.display="none";
+      loadSiswa();
+      setTimeout(refreshSoalSiswa,500);
+    }
+
   }else{
     setRole("admin");
   }
 };
-
 
 async function loadAdmin(){
   const res = await fetch(SCRIPT_URL+"?role=admin").then(r=>r.json());
@@ -1748,15 +1763,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   };
 
 });
-// 🔐 AUTO LOGOUT SAAT RELOAD / TUTUP TAB
-window.addEventListener("beforeunload", ()=>{
-  const role = localStorage.getItem("role");
 
-  if(role === "siswa" || role === "admin"){
-    localStorage.removeItem("role");
-    localStorage.removeItem("login");
-  }
-});
 window.addEventListener("load",()=>{
    if(localStorage.getItem("login")==="true" &&
       localStorage.getItem("role")==="siswa"){
@@ -1773,23 +1780,8 @@ window.addEventListener("load",()=>{
         setTimeout(refreshSoalSiswa,500); // update data 0.5 detik kemudian
    }
 });
-window.addEventListener("load", ()=>{
-  if(sessionStorage.getItem("login")!=="true"){
-    loginBox.style.display="flex";   // ⬅ harus flex
-    app.style.display="none";
-    return;
-  }
-});
 
-document.addEventListener("visibilitychange", function(){
-  if(document.hidden){
-    sessionStorage.clear();
-  }
-});
 
-window.addEventListener("beforeunload", function(){
-  sessionStorage.clear();
-});
 
 async function loadMonitoring(){
 
