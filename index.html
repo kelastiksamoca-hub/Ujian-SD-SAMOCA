@@ -1710,15 +1710,18 @@ function updateMonitor(status){
 
   if(!nama || !no) return;
 
+  const formData = new FormData();
+  formData.append("noUjian", no);
+  formData.append("nama", nama);
+  formData.append("status", status);
+
   fetch(MONITOR_URL,{
     method:"POST",
-    body: JSON.stringify({
-      nama:nama,
-      no:no,
-      status:status
-    })
+    body: formData
   });
 }
+
+
 
 function keluarUjian(){
     updateMonitor("Keluar");
@@ -1830,27 +1833,7 @@ setInterval(()=>{
   }
 },5000);
 
-let intervalMonitoring = setInterval(()=>{
 
-  if(sessionStorage.getItem("role")==="siswa" && !sedangLogout){
-
-    const no = sessionStorage.getItem("noUjian");
-    const nama = sessionStorage.getItem("namaSiswa");
-
-    const formData = new FormData();
-    formData.append("noUjian", no);
-    formData.append("nama", nama);
-    formData.append("status", "Mengerjakan");
-
-    fetch(MONITOR_URL,{
-      method:"POST",
-      body: formData
-    });
-
-  }
-
-},5000);
-	
 async function hapusSelesai(){
 
   if(!confirm("Hapus SEMUA siswa yang sudah selesai ujian?")) return;
