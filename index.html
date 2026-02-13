@@ -1227,7 +1227,7 @@ button:active::after{
 </div>
 <script>
 window.onbeforeunload = () => {
-  localStorage.removeItem("preview");
+  sessionStorage.removeItem("preview");
 };
 
 const btnAdmin = document.getElementById("btnAdmin");
@@ -1247,9 +1247,9 @@ let hapusID = null;
 function adminPreviewSiswa(){
 
   // ❌ JANGAN UBAH ROLE
-  // localStorage.setItem("role","siswa");  ← HAPUS BARIS INI
+  // sessionStorage.setItem("role","siswa");  ← HAPUS BARIS INI
 
-  localStorage.setItem("preview","admin");
+  sessionStorage.setItem("preview","admin");
 
   document.getElementById("adminPreviewLabel").style.display="block";
   document.getElementById("btnBackAdmin").style.display="block";
@@ -1289,7 +1289,7 @@ function adminPreviewSiswa(){
 function kembaliKeAdmin(){
 
   // keluar dari preview
-  localStorage.removeItem("preview");
+  sessionStorage.removeItem("preview");
 
   // sembunyikan siswa
   siswaMode.style.display = "none";
@@ -1380,8 +1380,8 @@ async function login(){
   if(selectedRole==="admin"){
     if(pass.value!=="12345") return alert("Password admin salah");
 
-    localStorage.setItem("login","true");
-    localStorage.setItem("role","admin");
+    sessionStorage.setItem("login","true");
+    sessionStorage.setItem("role","admin");
 
     // ⬇️ LANGSUNG MASUK (TANPA RELOAD)
     loginBox.style.display="none";
@@ -1403,14 +1403,14 @@ async function login(){
     }
 
   	// 🔥 Simpan login
-  	localStorage.setItem("login","true");
-    localStorage.setItem("role","siswa");
-    localStorage.setItem("token",token);
-    localStorage.setItem("namaSiswa",nama);
-    localStorage.setItem("noUjian",no);
+  	sessionStorage.setItem("login","true");
+    sessionStorage.setItem("role","siswa");
+    sessionStorage.setItem("token",token);
+    sessionStorage.setItem("namaSiswa",nama);
+    sessionStorage.setItem("noUjian",no);
 
   	// Bersihkan preview admin
-  	localStorage.removeItem("preview");
+  	sessionStorage.removeItem("preview");
   	const label = document.getElementById("adminPreviewLabel");
   	if(label) label.style.display = "none";
 
@@ -1436,7 +1436,7 @@ async function login(){
 }
 
 function logout(){
-  localStorage.clear();
+  sessionStorage.clear();
   location.reload();
 }
 
@@ -1449,8 +1449,8 @@ window.onload = ()=>{
   siswaMode.style.display="none";
   siswaUjian.style.display="none";
 
-  const login = localStorage.getItem("login");
-  const role  = localStorage.getItem("role");
+  const login = sessionStorage.getItem("login");
+  const role  = sessionStorage.getItem("role");
 
   if(login==="true" && role){
 
@@ -1599,8 +1599,8 @@ async function hapusToken(id){
 
 async function refreshSoalSiswa(){
 
-  const token = localStorage.getItem("token");
-  const nama  = localStorage.getItem("namaSiswa");
+  const token = sessionStorage.getItem("token");
+  const nama  = sessionStorage.getItem("namaSiswa");
 
   if(!token){
     infoSoal.innerText = "⚠️ Token tidak ditemukan. Silakan login ulang.";
@@ -1624,7 +1624,7 @@ async function refreshSoalSiswa(){
       return;
     }
 
-    localStorage.setItem("soal", JSON.stringify(res.soal));
+    sessionStorage.setItem("soal", JSON.stringify(res.soal));
     cacheSoal = res.soal;
 
     if(cacheSoal.length === 0){
@@ -1641,9 +1641,9 @@ async function refreshSoalSiswa(){
 }
 function loadSiswa(){
 
-  cacheSoal = JSON.parse(localStorage.getItem("soal") || "[]");
-  const nama = localStorage.getItem("namaSiswa") || "";
-  const no   = localStorage.getItem("noUjian") || "";
+  cacheSoal = JSON.parse(sessionStorage.getItem("soal") || "[]");
+  const nama = sessionStorage.getItem("namaSiswa") || "";
+  const no   = sessionStorage.getItem("noUjian") || "";
   namaTampil.innerHTML = `
   👤 ${nama}<br>
   📝 No Ujian: ${no}
@@ -1684,7 +1684,7 @@ function loadSiswa(){
 
 function mulaiUjian(mapel,durasi,link){
 
-  if(localStorage.getItem("preview")==="admin"){
+  if(sessionStorage.getItem("preview")==="admin"){
     alert("Mode preview admin. Timer tetap berjalan, hasil tidak dikirim.");
   }
 
@@ -1705,8 +1705,8 @@ function mulaiUjian(mapel,durasi,link){
 }
 function updateMonitor(status){
 
-  const nama = localStorage.getItem("namaSiswa");
-  const no   = localStorage.getItem("noUjian");
+  const nama = sessionStorage.getItem("namaSiswa");
+  const no   = sessionStorage.getItem("noUjian");
 
   if(!nama || !no) return;
 
@@ -1765,8 +1765,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 window.addEventListener("load",()=>{
-   if(localStorage.getItem("login")==="true" &&
-      localStorage.getItem("role")==="siswa"){
+   if(sessionStorage.getItem("login")==="true" &&
+      sessionStorage.getItem("role")==="siswa"){
 
         loginBox.style.display="none";
         app.style.display="block";
@@ -1781,6 +1781,9 @@ window.addEventListener("load",()=>{
    }
 });
 
+window.addEventListener("beforeunload", ()=>{
+  sessionStorage.clear();
+});
 
 
 async function loadMonitoring(){
@@ -1822,17 +1825,17 @@ async function loadMonitoring(){
   }
 }
 setInterval(()=>{
-  if(localStorage.getItem("role")==="admin"){
+  if(sessionStorage.getItem("role")==="admin"){
     loadMonitoring();
   }
 },5000);
 
 let intervalMonitoring = setInterval(()=>{
 
-  if(localStorage.getItem("role")==="siswa" && !sedangLogout){
+  if(sessionStorage.getItem("role")==="siswa" && !sedangLogout){
 
-    const no = localStorage.getItem("noUjian");
-    const nama = localStorage.getItem("namaSiswa");
+    const no = sessionStorage.getItem("noUjian");
+    const nama = sessionStorage.getItem("namaSiswa");
 
     fetch(MONITOR_URL,{
       method:"POST",
